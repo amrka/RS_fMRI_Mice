@@ -18,6 +18,10 @@ group_maps='/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/me
 ts_dir='/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/dual_regression/output';                           % dual regression output directory, containing all subjects' timeseries
 
 system('dir=/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/;slices_summary ${dir}melodic_IC 3 /media/amr/Amr_4TB/Work/October_Acquistion/Anat_Template_Enhanced.nii.gz ${dir}melodic_IC.sum')
+%%% [tail: illegal offset -- +] error can be avoided by adding -1 to summary_slices command
+%%% it will return one slice image per component instead of three, but here will be no errors
+%%% adding -d flag does not pan out very well, the template becomes way too much darker
+
 %%% load timeseries data from the dual regression output directory
 ts=nets_load(ts_dir,2,1);
    %%% arg2 is the TR (in seconds)
@@ -25,8 +29,8 @@ ts=nets_load(ts_dir,2,1);
 ts_spectra=nets_spectra(ts);   % have a look at mean timeseries spectra
 
 
-%%% cleanup and remove bad nodes' timeseries (whichever is not listed in ts.DD is *BAD*).
-ts.DD=[1:n_dims];  % list the good nodes in your group-ICA output (counting starts at 1, not 0)
+%%% cleanup and remove bad nodes' timeseries (whichever is NOT listed in ts.DD is *BAD*).
+ts.DD=[1:2,4:14,16:20];  % list the good nodes in your group-ICA output (counting starts at 1, not 0)
 % ts.UNK=[10];  optionally setup a list of unknown components (where you're unsure of good vs bad)
 ts=nets_tsclean(ts,1);                   % regress the bad nodes out of the good, and then remove the bad nodes' timeseries (1=aggressive, 0=unaggressive (just delete bad)).
                                          % For partial-correlation netmats, if you are going to do nets_tsclean, then it *probably* makes sense to:
@@ -71,6 +75,7 @@ nets_hierarchy(Znet1,Znet2,ts.DD,group_maps);
 
 design = '/media/amr/Amr_4TB/Work/October_Acquistion/Design_october_Acquistion_dual_regression.mat'
 contrast = '/media/amr/Amr_4TB/Work/October_Acquistion/Design_october_Acquistion_dual_regression.con'
+% I adjusted the number of permutations to 10000 from nets_glm.m
 [p_uncorrected1,p_corrected1]=nets_glm(netmats1, design, contrast,1); %1 last argument is to show output or not
 [p_uncorrected2,p_corrected2]=nets_glm(netmats2, design, contrast,1);
 [p_uncorrected3,p_corrected3]=nets_glm(netmats3, design, contrast,1);
@@ -102,5 +107,5 @@ nets_edgepics(ts,group_maps,Znet3,reshape(p_corrected3(2,:),ts.Nnodes,ts.Nnodes)
 %%% arg3 = matrix row number,    i.e. the first  component of interest (from the DD list)
 %%% arg4 = matrix column number, i.e. the second component of interest (from the DD list)
 %%% arg5 = size of the first group (set to -1 for paired groups)
-nets_boxplots(ts,netmats3,1,7,36);
+nets_boxplots(ts,netmats3,15,8,16);
 %print('-depsc',sprintf('boxplot-%d-%d.eps',IC1,IC2));  % example syntax for printing to file
