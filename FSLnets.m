@@ -11,13 +11,13 @@ addpath /Users/amr/Downloads/L1precision            % L1precision toolbox
 addpath /Users/amr/Downloads/pwling                 % pairwise causality toolbox
 addpath(sprintf('%s/etc/matlab',getenv('FSLDIR')))
 %%
-n_dims = 25
-group_maps='/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_25/melodic_group/melodic_IC';     % spatial maps 4D NIFTI file, e.g. from group-ICA No extension needed
+n_dims = 40
+group_maps='/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_40/melodic_group/melodic_IC';     % spatial maps 4D NIFTI file, e.g. from group-ICA No extension needed
    %%% you must have already run the following (outside MATLAB), to create summary pictures of the maps in the NIFTI file:
    %%% slices_summary <group_maps> 4 $FSLDIR/data/standard/MNI152_T1_2mm <group_maps>.sum
-ts_dir='/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_25/dual_regression/output';                           % dual regression output directory, containing all subjects' timeseries
+ts_dir='/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_40/dual_regression/output';                           % dual regression output directory, containing all subjects' timeseries
 
-system('dir=/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_25/melodic_group/;slices_summary ${dir}melodic_IC 3 /media/amr/Amr_4TB/Work/October_Acquistion/Anat_Template_Enhanced.nii.gz ${dir}melodic_IC.sum -1')
+system('dir=/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_40/melodic_group/;slices_summary ${dir}melodic_IC 3 /media/amr/Amr_4TB/Work/October_Acquistion/Anat_Template_Enhanced.nii.gz ${dir}melodic_IC.sum -1')
 %%% [tail: illegal offset -- +] error can be avoided by adding -1 to summary_slices command
 %%% it will return one slice image per component instead of three, but here will be no errors
 %%% adding -d flag does not pan out very well, the template becomes way too much darker
@@ -30,7 +30,7 @@ ts_spectra=nets_spectra(ts);   % have a look at mean timeseries spectra
 
 %%
 %%% cleanup and remove bad nodes' timeseries (whichever is NOT listed in ts.DD is *BAD*).
-ts.DD=[1:11, 13:25];  % list the good nodes in your group-ICA output (counting starts at 1, not 0)
+ts.DD=[1:7, 9:40];  % list the good nodes in your group-ICA output (counting starts at 1, not 0)
 % ts.UNK=[10];  optionally setup a list of unknown components (where you're unsure of good vs bad)
 ts=nets_tsclean(ts,1);                   % regress the bad nodes out of the good, and then remove the bad nodes' timeseries (1=aggressive, 0=unaggressive (just delete bad)).
                                          % For partial-correlation netmats, if you are going to do nets_tsclean, then it *probably* makes sense to:
@@ -56,10 +56,10 @@ netmats5=  nets_netmats(ts,1,'ridgep', 0.1);     % Ridge Regression partial, wit
 %%
 % save matrices fro future use
 
-save('/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_25/melodic_group/dim_25_netmats1.mat', 'netmats1')
-save('/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_25/melodic_group/dim_25_netmats2.mat', 'netmats2')
-save('/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_25/melodic_group/dim_25_netmats3.mat', 'netmats3')
-save('/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_25/melodic_group/dim_25_netmats5.mat', 'netmats5')
+save('/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_40/melodic_group/dim_40_netmats1.mat', 'netmats1')
+save('/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_40/melodic_group/dim_40_netmats2.mat', 'netmats2')
+save('/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_40/melodic_group/dim_40_netmats3.mat', 'netmats3')
+save('/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_40/melodic_group/dim_40_netmats5.mat', 'netmats5')
 %%
 %%% view of consistency of netmats across subjects; returns t-test Z values as a network matrix
 %%% second argument (0 or 1) determines whether to display the Z matrix and a consistency scatter plot
