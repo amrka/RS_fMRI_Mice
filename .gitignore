@@ -3,3 +3,4 @@ cluster_resting_state_0001_outdated.py
 cluster_resting_state_move_files_for_DR_0003_outdated.sh
 .DS_Store
 .sh.swp
+.swp
