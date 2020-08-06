@@ -26,3 +26,15 @@ cp \
 
 # I edited the CSV files manually to remove the extra subjects
 # I did the designs manually, by calling Glm and fill in the data from the CSV files
+
+# Copy the dr_stage2 maps of the 20 dim for the correlation analysis
+mkdir /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim
+
+
+cp \
+/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/dual_regression/output/dr_stage2_ic00??.nii.gz \
+/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim
+
+# decompress them to make palm's life easy
+
+gunzip -d /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/*.nii.gz
