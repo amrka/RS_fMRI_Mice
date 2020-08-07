@@ -149,8 +149,9 @@ palm_corr = Node(name = 'palm_corr',
                                       output_names = ['P_values'],
                                       function = palm_corr))
 
-# TODO: raise the RAM to 64G
 #-----------------------------------------------------------------------------------------------------
+# instead of calculating r from tstat like in VBM and DTI, I used -pearson flag
+# there is tstats for each module, it would have been so much work to them with nodes
 def palm_corr_pearson(design, contrast):
     import os
     import glob
