@@ -18,7 +18,7 @@ from nipype.pipeline.engine import Workflow, Node, MapNode
 import numpy as np
 import matplotlib.pyplot as plt
 #-------------------------------------------------------------------------------------
-experiment_dir = '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/'
+experiment_dir = '/home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/'
 
 
 design_list=  [ 'EPM_open_to_close_ratio.mat',
@@ -109,27 +109,27 @@ def palm_corr(design, contrast):
 
 
     cmd = ("palm \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0000.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0001.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0002.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0003.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0004.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0005.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0006.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0007.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0008.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0009.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0010.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0011.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0012.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0013.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0014.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0015.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0016.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0017.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0018.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0019.nii \
-    -m /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/anat_template_enhanced_mask_2.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0000.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0001.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0002.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0003.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0004.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0005.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0006.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0007.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0008.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0009.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0010.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0011.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0012.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0013.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0014.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0015.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0016.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0017.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0018.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0019.nii \
+    -m /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/anat_template_enhanced_mask_2.nii \
     -d {design} -t {contrast} \
     -T -noniiclass -n 10 -corrcon -corrmod -save1-p -nouncorrected -o palm_corr_rs")
     # start with 5000 like the rest of resting state
@@ -159,27 +159,27 @@ def palm_corr_pearson(design, contrast):
 
 
     cmd = ("palm \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0000.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0001.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0002.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0003.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0004.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0005.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0006.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0007.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0008.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0009.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0010.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0011.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0012.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0013.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0014.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0015.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0016.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0017.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0018.nii \
-    -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0019.nii \
-    -m /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/anat_template_enhanced_mask_2.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0000.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0001.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0002.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0003.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0004.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0005.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0006.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0007.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0008.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0009.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0010.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0011.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0012.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0013.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0014.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0015.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0016.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0017.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0018.nii \
+    -i /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0019.nii \
+    -m /home/in/aeed/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/anat_template_enhanced_mask_2.nii \
     -d {design} -t {contrast} \
     -T -noniiclass -n 3 -pearson -corrcon -corrmod -save1-p -nouncorrected -o palm_corr_pearson")
     # we do with 3 (or 1 or 2) as I am looking for correlation coefficient, I do not want P_values
@@ -223,6 +223,6 @@ resting_state_corr.connect ([
 
 
 resting_state_corr.write_graph(graph2use='colored', format='svg', simple_form=True)
-# resting_state_corr.run(plugin='SLURM', plugin_args={'dont_resubmit_completed_jobs': True,'max_jobs':50, 'sbatch_args':'--mem=64G'})
+resting_state_corr.run(plugin='SLURM', plugin_args={'dont_resubmit_completed_jobs': True,'max_jobs':50, 'sbatch_args':'--mem=64G'})
 # plugin_args={'sbatch_args': '--time=24:00:00 -N1 -c2 --mem=40G','max_jobs':200}
-resting_state_corr.run('MultiProc', plugin_args={'n_procs': 8})
+# resting_state_corr.run('MultiProc', plugin_args={'n_procs': 8})
