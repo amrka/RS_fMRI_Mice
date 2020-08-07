@@ -21,7 +21,39 @@ import matplotlib.pyplot as plt
 experiment_dir = '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/'
 
 
-map_list=  ['dr_stage2_20_dim']
+design_list=  [ 'EPM_open_to_close_ratio.mat',
+                'EPM_time_in_center.mat',
+                'EPM_time_in_center_percent.mat',
+                'EPM_time_in_closed_arms.mat',
+                'EPM_time_in_closed_arms_percent.mat',
+                'EPM_time_in_opened_arms.mat',
+                'EPM_time_in_opened_arms_percent.mat',
+                'EPM_total_distance.mat',
+                'EPM_velocity.mat',
+                'OF_percent_in_center.mat',
+                'OF_percent_in_corners.mat',
+                'OF_sec_in_center.mat',
+                'OF_total_distance.mat',
+                'OF_total_time_in_corners.mat',
+                'OF_velocity.mat',
+]
+
+contrast_list=  [ 'EPM_open_to_close_ratio.con',
+                'EPM_time_in_center.con',
+                'EPM_time_in_center_percent.con',
+                'EPM_time_in_closed_arms.con',
+                'EPM_time_in_closed_arms_percent.con',
+                'EPM_time_in_opened_arms.con',
+                'EPM_time_in_opened_arms_percent.con',
+                'EPM_total_distance.con',
+                'EPM_velocity.con',
+                'OF_percent_in_center.con',
+                'OF_percent_in_corners.con',
+                'OF_sec_in_center.con',
+                'OF_total_distance.con',
+                'OF_total_time_in_corners.con',
+                'OF_velocity.con',
+]
 
 output_dir  = 'resting_state_correlation_analysis_outputdir'
 working_dir = 'resting_state_correlation_analysis_workingdir'
@@ -29,14 +61,16 @@ working_dir = 'resting_state_correlation_analysis_workingdir'
 resting_state_corr = Workflow (name = 'resting_state_correlation_analysis')
 resting_state_corr.base_dir = opj(experiment_dir, working_dir)
 #-----------------------------------------------------------------------------------------------------
-infosource = Node(IdentityInterface(fields=['map_id']),
+infosource = Node(IdentityInterface(fields=['design_id', 'contrast_id']),
                   name="infosource")
-infosource.iterables = [('map_id', map_list)]
+infosource.iterables = [('design_id', design_list), ('contrast_id', contrast_list)]
+infosource.synchronize = True # to pick them in pairs, the design and the contrast
 
 #-----------------------------------------------------------------------------------------------------
 templates = {
 
-        'ICA_mask'  : '{map_id}/anat_template_enhanced_mask_2.nii'
+        'design'  : 'resting_state_corr_designs/{design_id}',
+        'contrast': 'resting_state_corr_designs/{contrast_id}'
  }
 selectfiles = Node(SelectFiles(templates,
                                base_directory=experiment_dir),
@@ -47,7 +81,7 @@ datasink = Node(DataSink(), name = 'datasink')
 datasink.inputs.container = output_dir
 datasink.inputs.base_directory = experiment_dir
 
-substitutions = [('_map_id_', ''),
+substitutions = [('_design_id_', ''),
 ('_contrast_..home..in..aeed..Work..October_Acquistion..VBM..resting_state_corr_designs..', ''),
 ('design_..home..in..aeed..Work..October_Acquistion..VBM..resting_state_corr_designs..', ''),
 ]
@@ -56,49 +90,7 @@ datasink.inputs.substitutions = substitutions
 
 
 #-----------------------------------------------------------------------------------------------------
-# designs and contrasts done manullay
-
-designs = [
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_open_to_close_ratio.mat',
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_center.mat',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_center_percent.mat',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_closed_arms.mat',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_closed_arms_percent.mat',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_opened_arms.mat',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_opened_arms_percent.mat',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_total_distance.mat',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_velocity.mat',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_center_corners_ratio.mat',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_percent_in_center.mat',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_percent_in_corners.mat',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_sec_in_center.mat',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_total_distance.mat',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_total_time_in_corners.mat',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_velocity.mat'
-]
-
-contrasts = [
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_open_to_close_ratio.con',
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_center.con',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_center_percent.con',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_closed_arms.con',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_closed_arms_percent.con',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_opened_arms.con',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_opened_arms_percent.con',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_total_distance.con',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_velocity.con',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_center_corners_ratio.con',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_percent_in_center.con',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_percent_in_corners.con',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_sec_in_center.con',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_total_distance.con',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_total_time_in_corners.con',
-# '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_velocity.con'
-]
-
-
-#-----------------------------------------------------------------------------------------------------
-def palm_corr(in_file, mask, design, contrast):
+def palm_corr(design, contrast):
     import os
     from glob import glob
     from nipype.interfaces.base import CommandLine
@@ -125,28 +117,28 @@ def palm_corr(in_file, mask, design, contrast):
     -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0017.nii \
     -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0018.nii \
     -i /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/dr_stage2_ic0019.nii \
-    -m {mask} \
+    -m /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/anat_template_enhanced_mask_2.nii \
     -d {design} -t {contrast} \
     -T -noniiclass -n 10 -corrcon -corrmod -save1-p -o palm_corr_vbm")
     # start with 1000 and if you find something interesting, go to 10000
 
 
-    cl = CommandLine(cmd.format(in_file=in_file, mask=mask, design=design, contrast=contrast ))
+    cl = CommandLine(cmd.format(design=design, contrast=contrast ))
     cl.run()
     # tstat1 = os.path.abspath('palm_corr_vbm_vox_tstat_c1.nii.gz')
     # tstat2 = os.path.abspath('palm_corr_vbm_vox_tstat_c2.nii.gz')
     # P_value1 = os.path.abspath('palm_corr_vbm_tfce_tstat_fwep_c1.nii.gz')
     # P_value2 = os.path.abspath('palm_corr_vbm_tfce_tstat_fwep_c2.nii.gz')
 
-    return tstat1, tstat2#, P_value1, P_value2
+    # return tstat1, tstat2#, P_value1, P_value2
 
 palm_corr = Node(name = 'palm_corr',
-                 interface = Function(input_names = ['in_file', 'mask', 'design', 'contrast'],
+                 interface = Function(input_names = ['design', 'contrast'],
                                         # output_names = ['tstat1', 'tstat2', 'P_value1', 'P_value2'],
                                       function = palm_corr))
 
 
-palm_corr.iterables = [("design", designs),("contrast", contrasts)]
+# palm_corr.iterables = [("design", designs),("contrast", contrasts)]
 palm_corr.synchronize = True # synchronize here serves to make sure design and contrast are used in pairs
 # Not using all the possible permuatations
 #-----------------------------------------------------------------------------------------------------
@@ -206,10 +198,12 @@ create_corr2.inputs.out_file = 'corr_coef_r2.nii.gz'
 #-----------------------------------------------------------------------------------------------------
 resting_state_corr.connect ([
 
-      (infosource, selectfiles,[('map_id','map_id')]),
+      (infosource, selectfiles, [('design_id','design_id')]),
+      (infosource, selectfiles, [('contrast_id','contrast_id')]),
 
       # (selectfiles, palm_corr, [('VBM','in_file')]),
-      (selectfiles, palm_corr, [('VBM_mask','mask')]),
+      (selectfiles, palm_corr, [('design','design')]),
+      (selectfiles, palm_corr, [('contrast','contrast')]),
       #
       # (palm_corr, datasink, [('tstat1','tstat1')]),
       # (palm_corr, datasink, [('tstat2','tstat2')]),
