@@ -223,6 +223,6 @@ resting_state_corr.connect ([
 
 
 resting_state_corr.write_graph(graph2use='colored', format='svg', simple_form=True)
-resting_state_corr.run(plugin='SLURM', plugin_args={'dont_resubmit_completed_jobs': True,'max_jobs':50, 'sbatch_args':'--mem=64G'})
+resting_state_corr.run(plugin='SLURM', plugin_args={'dont_resubmit_completed_jobs': True,'max_jobs':50, 'sbatch_args':'--mem=32G'})
 # plugin_args={'sbatch_args': '--time=24:00:00 -N1 -c2 --mem=40G','max_jobs':200}
 # resting_state_corr.run('MultiProc', plugin_args={'n_procs': 8})
