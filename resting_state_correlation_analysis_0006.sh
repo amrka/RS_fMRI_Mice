@@ -38,3 +38,13 @@ cp \
 # decompress them to make palm's life easy
 
 gunzip -d /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/*.nii.gz
+
+
+
+# Move the anat_temp mask to the same directory with the ICA maps and decompress it
+cp \
+/media/amr/Amr_4TB/Work/October_Acquistion/anat_temp_new/anat_template_enhanced_mask_2.nii.gz \
+/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim
+
+
+gunzip -d /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/dr_stage2_20_dim/anat_template_enhanced_mask_2.nii.gz
