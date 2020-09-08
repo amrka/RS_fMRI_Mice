@@ -10,12 +10,13 @@ mkdir -p /Volumes/Amr_1TB/resting_state/palm_dual_regression/{dim_10,dim_15,dim_
 dim=20
 for file in /Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_${dim}/dual_regression/output/dr_stage2_ic00??.nii.gz;do
 	imcp ${file} \
-	/Volumes/Amr_1TB/resting_state/palm_dual_regression/dim_${dim}/ 
+	/Volumes/Amr_1TB/resting_state/palm_dual_regression/dim_${dim}/
 done
 
 #uncompress to use with palm
 gunzip /Volumes/Amr_1TB/resting_state/palm_dual_regression/dim_${dim}/*.nii.gz
 
+ # that is the correct mask
 palm \
 -i /Volumes/Amr_1TB/resting_state/palm_dual_regression/dim_${dim}/dr_stage2_ic0000.nii  \
 -i /Volumes/Amr_1TB/resting_state/palm_dual_regression/dim_${dim}/dr_stage2_ic0001.nii  \
@@ -55,7 +56,7 @@ palm \
 dim=15
 for file in /Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_${dim}/dual_regression/output/dr_stage2_ic00??.nii.gz;do
 	imcp ${file} \
-	/Volumes/Amr_1TB/resting_state/palm_dual_regression/dim_${dim}/ 
+	/Volumes/Amr_1TB/resting_state/palm_dual_regression/dim_${dim}/
 done
 
 #uncompress to use with palm
@@ -92,7 +93,7 @@ palm \
 dim=25
 for file in /Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_${dim}/dual_regression/output/dr_stage2_ic00??.nii.gz;do
 	imcp ${file} \
-	/Volumes/Amr_1TB/resting_state/palm_dual_regression/dim_${dim}/ 
+	/Volumes/Amr_1TB/resting_state/palm_dual_regression/dim_${dim}/
 done
 
 #uncompress to use with palm
