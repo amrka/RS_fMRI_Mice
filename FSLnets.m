@@ -6,9 +6,9 @@ path(path, fsldirmpath);
 clear fsldir fsldirmpath;
 
 
-addpath /Users/amr/Downloads/FSLNets              % wherever you've put this package
-addpath /Users/amr/Downloads/L1precision            % L1precision toolbox
-addpath /Users/amr/Downloads/pwling                 % pairwise causality toolbox
+addpath /media/amr/HDD/Softwares/FSLNETS/FSLNets              % wherever you've put this package
+addpath /media/amr/HDD/Softwares/FSLNETS/L1precision            % L1precision toolbox
+addpath /media/amr/HDD/Softwares/FSLNETS/pwling                 % pairwise causality toolbox
 addpath(sprintf('%s/etc/matlab',getenv('FSLDIR')))
 %%
 n_dims = 100
