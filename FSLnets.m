@@ -11,13 +11,13 @@ addpath /media/amr/HDD/Softwares/FSLNETS/L1precision            % L1precision to
 addpath /media/amr/HDD/Softwares/FSLNETS/pwling                 % pairwise causality toolbox
 addpath(sprintf('%s/etc/matlab',getenv('FSLDIR')))
 %%
-n_dims = 100
-group_maps='/media/amr/Amr_4TB/Work/October_Acquistion/Work/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC';     % spatial maps 4D NIFTI file, e.g. from group-ICA No extension needed
+n_dims = 20
+group_maps='/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC';     % spatial maps 4D NIFTI file, e.g. from group-ICA No extension needed
    %%% you must have already run the following (outside MATLAB), to create summary pictures of the maps in the NIFTI file:
    %%% slices_summary <group_maps> 4 $FSLDIR/data/standard/MNI152_T1_2mm <group_maps>.sum
-ts_dir='/media/amr/Amr_4TB/Work/October_Acquistion/Work/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/dual_regression/output';                           % dual regression output directory, containing all subjects' timeseries
+ts_dir='/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/dual_regression/output';                           % dual regression output directory, containing all subjects' timeseries
 
-system('dir=/media/amr/Amr_4TB/Work/October_Acquistion/Work/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/;slices_summary ${dir}melodic_IC 3 /media/amr/Amr_4TB/Work/October_Acquistion/Anat_Template_Enhanced.nii.gz ${dir}melodic_IC.sum -1')
+system('dir=/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/;slices_summary ${dir}melodic_IC 3 /media/amr/Amr_4TB/Work/October_Acquistion/Anat_Template_Enhanced.nii.gz ${dir}melodic_IC.sum -1')
 %%% [tail: illegal offset -- +] error can be avoided by adding -1 to summary_slices command
 %%% it will return one slice image per component instead of three, but here will be no errors
 %%% adding -d flag does not pan out very well, the template becomes way too much darker
@@ -56,10 +56,10 @@ netmats5=  nets_netmats(ts,1,'ridgep', 0.1);     % Ridge Regression partial, wit
 %%
 % save matrices fro future use
 
-save('/media/amr/Amr_4TB/Work/October_Acquistion/Work/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/dim_20_netmats1.mat', 'netmats1')
-save('/media/amr/Amr_4TB/Work/October_Acquistion/Work/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/dim_20_netmats2.mat', 'netmats2')
-save('/media/amr/Amr_4TB/Work/October_Acquistion/Work/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/dim_20_netmats3.mat', 'netmats3')
-save('/media/amr/Amr_4TB/Work/October_Acquistion/Work/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/dim_20_netmats5.mat', 'netmats5')
+save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/dim_20_netmats1.mat', 'netmats1')
+save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/dim_20_netmats2.mat', 'netmats2')
+save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/dim_20_netmats3.mat', 'netmats3')
+save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/dim_20_netmats5.mat', 'netmats5')
 %%
 %%% view of consistency of netmats across subjects; returns t-test Z values as a network matrix
 %%% second argument (0 or 1) determines whether to display the Z matrix and a consistency scatter plot
