@@ -76,7 +76,7 @@ save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_
 nets_hierarchy(Znet1,Znet2,ts.DD,group_maps);
 
 %%% view interactive netmat web-based display
-%nets_netweb(Znet1,Znet2,ts.DD,group_maps,'netweb');
+nets_netweb(Znet1,Znet2,ts.DD,group_maps,'/media/amr/Amr_4TB/Dropbox/netweb');
 
 
 %%% cross-subject GLM, with inference in randomise (assuming you already have the GLM design.mat and design.con files).
@@ -124,6 +124,6 @@ nets_edgepics(ts,group_maps,Znet5,reshape(p_corrected5(2,:),ts.Nnodes,ts.Nnodes)
 %%% arg4 = matrix column number, i.e. the second component of interest (from the DD list)
 %%% arg5 = size of the first group (set to -1 for paired groups)
 
-%%
+%% third argument is number of subjects in gp 1
 nets_boxplots(ts,netmats2,14,7,16);
 %print('-depsc',sprintf('boxplot-%d-%d.eps',IC1,IC2));  % example syntax for printing to file
