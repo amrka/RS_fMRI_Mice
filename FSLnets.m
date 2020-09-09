@@ -17,7 +17,7 @@ group_maps='/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_sta
    %%% slices_summary <group_maps> 4 $FSLDIR/data/standard/MNI152_T1_2mm <group_maps>.sum
 ts_dir='/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/dual_regression/output';                           % dual regression output directory, containing all subjects' timeseries
 
-system('dir=/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/;slices_summary ${dir}melodic_IC 3 /media/amr/Amr_4TB/Work/October_Acquistion/anat_temp_enhanced_3.nii.gz ${dir}melodic_IC.sum -1')
+%system('dir=/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/;slices_summary ${dir}melodic_IC 3 /media/amr/Amr_4TB/Work/October_Acquistion/anat_temp_enhanced_3.nii.gz ${dir}melodic_IC.sum -1')
 %%% [tail: illegal offset -- +] error can be avoided by adding -1 to summary_slices command
 %%% it will return one slice image per component instead of three, but here will be no errors
 %%% adding -d flag does not pan out very well, the template becomes way too much darker
@@ -82,8 +82,8 @@ nets_hierarchy(Znet1,Znet2,ts.DD,group_maps);
 %%% cross-subject GLM, with inference in randomise (assuming you already have the GLM design.mat and design.con files).
 %%% arg4 determines whether to view the corrected-p-values, with non-significant entries removed above the diagonal.
 %%
-design = '/media/amr/Amr_4TB/Work/October_Acquistion/Design_october_Acquistion_dual_regression.mat'
-contrast = '/media/amr/Amr_4TB/Work/October_Acquistion/Design_october_Acquistion_dual_regression.con'
+design = '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/Design_october_Acquistion_dual_regression.mat'
+contrast = '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/Design_october_Acquistion_dual_regression.con'
 % I adjusted the number of permutations to 10000 from nets_glm.m
 [p_uncorrected1,p_corrected1]=nets_glm(netmats1, design, contrast,1); %1 last argument is to show output or not
 [p_uncorrected2,p_corrected2]=nets_glm(netmats2, design, contrast,1);
