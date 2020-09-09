@@ -76,6 +76,8 @@ save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_
 nets_hierarchy(Znet1,Znet2,ts.DD,group_maps);
 
 %%% view interactive netmat web-based display
+% for this to work, you need to install XAMPP, and save the index.html in /Applications/XAMPP/htdocs
+% it goes without saying, but you need to start the Apache Web Server
 nets_netweb(Znet1,Znet2,ts.DD,group_maps,'/media/amr/Amr_4TB/Dropbox/netweb');
 
 

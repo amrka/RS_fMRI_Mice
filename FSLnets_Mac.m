@@ -73,10 +73,12 @@ save('/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_
 %%
 %%% view hierarchical clustering of nodes
 %%% arg1 is shown below the diagonal (and drives the clustering/hierarchy); arg2 is shown above diagonal
-nets_hierarchy(Znet1,Znet2,ts.DD,group_maps);
+%nets_hierarchy(Znet1,Znet2,ts.DD,'/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC');
 
 %%% view interactive netmat web-based display
-nets_netweb(Znet1,Znet2,ts.DD,group_maps,'/media/amr/Amr_4TB/Dropbox/netweb');
+% for this to work, you need to install XAMPP, and save the index.html in /Applications/XAMPP/htdocs
+% it goes without saying, but you need to start the Apache Web Server
+nets_netweb(Znet1,Znet2,ts.DD,'/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC','/Applications/XAMPP/htdocs/netweb');
 
 
 %%% cross-subject GLM, with inference in randomise (assuming you already have the GLM design.mat and design.con files).
