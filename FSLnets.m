@@ -113,11 +113,11 @@ nets_edgepics(ts,group_maps,Znet5,reshape(p_corrected5(2,:),ts.Nnodes,ts.Nnodes)
 %%% arg1 is whichever netmats you want to test.
 %%% arg2 is the size of first group of subjects; set to 0 if you have two groups with paired subjects.
 %%% arg3 determines which LDA method to use (help nets_lda to see list of options)
-[lda_percentages]=nets_lda(netmats1,16,14)
-[lda_percentages]=nets_lda(netmats2,16,14)
-[lda_percentages]=nets_lda(netmats3,16,14)
+[lda_percentages]=nets_lda(netmats1,14,7)
+[lda_percentages]=nets_lda(netmats2,14,7)
+[lda_percentages]=nets_lda(netmats3,14,7)
 
-[lda_percentages]=nets_lda(netmats5,16,14)
+[lda_percentages]=nets_lda(netmats5,14,7)
 
 %%% create boxplots for the two groups for a network-matrix-element of interest (e.g., selected from GLM output)
 %%% arg3 = matrix row number,    i.e. the first  component of interest (from the DD list)
@@ -125,5 +125,5 @@ nets_edgepics(ts,group_maps,Znet5,reshape(p_corrected5(2,:),ts.Nnodes,ts.Nnodes)
 %%% arg5 = size of the first group (set to -1 for paired groups)
 
 %%
-nets_boxplots(ts,netmats2,92,37,16);
+nets_boxplots(ts,netmats2,14,7,16);
 %print('-depsc',sprintf('boxplot-%d-%d.eps',IC1,IC2));  % example syntax for printing to file
