@@ -73,7 +73,7 @@ save('/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_
 %%
 %%% view hierarchical clustering of nodes
 %%% arg1 is shown below the diagonal (and drives the clustering/hierarchy); arg2 is shown above diagonal
-%nets_hierarchy(Znet1,Znet2,ts.DD,'/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC');
+nets_hierarchy(Znet1,Znet2,ts.DD,'/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC');
 
 %%% view interactive netmat web-based display
 % for this to work, you need to install XAMPP, and save the index.html in /Applications/XAMPP/htdocs
@@ -84,8 +84,8 @@ nets_netweb(Znet1,Znet2,ts.DD,'/Volumes/Amr_1TB/resting_state/resting_state_gp_I
 %%% cross-subject GLM, with inference in randomise (assuming you already have the GLM design.mat and design.con files).
 %%% arg4 determines whether to view the corrected-p-values, with non-significant entries removed above the diagonal.
 %%
-design = '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/Design_october_Acquistion_dual_regression.mat'
-contrast = '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/Design_october_Acquistion_dual_regression.con'
+design = '/Volumes/Amr_1TB/resting_state/Design_october_Acquistion_dual_regression.mat'
+contrast = '/Volumes/Amr_1TB/resting_state/Design_october_Acquistion_dual_regression.con'
 % I adjusted the number of permutations to 10000 from nets_glm.m
 [p_uncorrected1,p_corrected1]=nets_glm(netmats1, design, contrast,1); %1 last argument is to show output or not
 [p_uncorrected2,p_corrected2]=nets_glm(netmats2, design, contrast,1);
