@@ -66,8 +66,8 @@ save('/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_
 %%% view of consistency of netmats across subjects; returns t-test Z values as a network matrix
 %%% second argument (0 or 1) determines whether to display the Z matrix and a consistency scatter plot
 %%% third argument (optional) groups runs together; e.g. setting this to 4 means each group of 4 runs were from the same subject
-[Znet_F,Mnet_F]=nets_groupmean(netmats_F,1);   % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
-[Znet_P,Mnet_P]=nets_groupmean(netmats_P,1);   % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
+[Znet_F,Mnet_F]=nets_groupmean(netmats_F,1);      % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
+[Znet_P,Mnet_P]=nets_groupmean(netmats_P,1);      % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
 [Znet_rP,Mnet_rP]=nets_groupmean(netmats_rP,1);   % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
 
 
@@ -78,13 +78,16 @@ save('/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_
 % it was not working on mac (it shows the hierarchy without the components pics), but worked on linux, becaause the versions of fslnets were different
 % obivously in Mac's more recent version, the nets_hierarchy.m script was changed and requires 3 slices images
 % the problem was resolved once I replaced that version of nets_hierarchy with the linux one (the other one is renamed _net_hierarchy.m )
-% nets_hierarchy(Znet_F,Znet_P,ts.DD,'/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC');
-% nets_hierarchy(Znet_F,Znet_rP,ts.DD,'/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC');
+nets_hierarchy(Znet_F,Znet_P,ts.DD,'/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC');
+nets_hierarchy(Znet_F,Znet_rP,ts.DD,'/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC');
+nets_hierarchy(Znet_P,Znet_rP,ts.DD,'/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC');
+
 
 %%% view interactive netmat web-based display
 % for this to work, you need to install XAMPP, and save the index.html in /Applications/XAMPP/htdocs
 % it goes without saying, but you need to start the Apache Web Server
-%nets_netweb(Znet_F,Znet_P,ts.DD,'/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC','/Applications/XAMPP/htdocs/netweb');
+nets_netweb(Znet_F,Znet_P,ts.DD,'/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC','/Applications/XAMPP/htdocs/netweb_F_P');
+nets_netweb(Znet_F,Znet_rP,ts.DD,'/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC','/Applications/XAMPP/htdocs/netweb_F_rP');
 
 
 %%% cross-subject GLM, with inference in randomise (assuming you already have the GLM design.mat and design.con files).
@@ -148,7 +151,7 @@ Ngroup1 = 16 %number of animals in group 1
 netmat= netmats_rP
 
 
-i=(IC1-1)*ts.Nnodes + IC2; 
+i=(IC1-1)*ts.Nnodes + IC2;
 
 % get values for boxplots, padding with NaN for unequal groups (otherwise boxplot doesn't work)
 grot1=netmat(1:Ngroup1,i); grot2=netmat(Ngroup1+1:end,i);
@@ -156,5 +159,3 @@ grotl=max(length(grot1),length(grot2));
 grot1=[grot1;nan(grotl-length(grot1),1)]; grot2=[grot2;nan(grotl-length(grot2),1)];
 grot_both = [grot1, grot2]
 csvwrite('/Users/amr/Dropbox/thesis/resting/FSLNets_pics/regularized_partial_corr_14_7.csv', grot_both)
-
-
