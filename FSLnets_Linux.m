@@ -3,7 +3,7 @@ setenv( 'FSLDIR', '/usr/share/fsl/5.0');
 fsldir = getenv('FSLDIR');
 fsldirmpath = sprintf('%s/etc/matlab',fsldir);
 path(path, fsldirmpath);
-clear fsldir fsldirmpath;
+%clear fsldir fsldirmpath;
 
 
 addpath /media/amr/HDD/Softwares/FSLNETS/FSLNets              % wherever you've put this package
@@ -50,7 +50,7 @@ ts_spectra=nets_spectra(ts);             % have a look at mean spectra after thi
 netmats_F=  nets_netmats(ts,1,'corr');       % full correlation (normalised covariances)
 netmats_P=  nets_netmats(ts,1,'icov');       % partial correlation
 % netmats3=  nets_netmats(ts,1,'icov',10);    % L1-regularised partial, with lambda=10
-netmats_rP=  nets_netmats(ts,1,'ridgep', 0.1);     % Ridge Regression partial, with rho=0.1
+% netmats_rP=  nets_netmats(ts,1,'ridgep', 0.1);     % Ridge Regression partial, with rho=0.1
 
 %netmats11= nets_netmats(ts,0,'pwling');     % Hyvarinen's pairwise causality measure
 %%
@@ -68,7 +68,7 @@ save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_
 [Znet_P,Mnet_P]=nets_groupmean(netmats_P,1);   % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
 % [Znet3,Mnet3]=nets_groupmean(netmats3,1);   % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
 
-[Znet_rP,Mnet_rP]=nets_groupmean(netmats_rP,1);   % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
+% [Znet_rP,Mnet_rP]=nets_groupmean(netmats_rP,1);   % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
 
 %%
 %%% view hierarchical clustering of nodes
@@ -77,12 +77,12 @@ save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_
 % obivously in Mac's more recent version, the nets_hierarchy.m script was changed and requires 3 slices images
 % the problem was resolved once I replaced that version of nets_hierarchy with the linux one (the other one is renamed _net_hierarchy.m )
 nets_hierarchy(Znet_F,Znet_P,ts.DD,'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC');
-nets_hierarchy(Znet_F,Znet_rP,ts.DD,'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC');
+%nets_hierarchy(Znet_F,Znet_rP,ts.DD,'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC');
 
 %%% view interactive netmat web-based display
 % for this to work, you need to install XAMPP, and save the index.html in /Applications/XAMPP/htdocs
 % it goes without saying, but you need to start the Apache Web Server
-%nets_netweb(Znet_F,Znet_P,ts.DD,'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC','/Applications/XAMPP/htdocs/netweb');
+% nets_netweb(Znet_F,Znet_P,ts.DD,'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC','/opt/lampp/htdocs');
 
 
 %%% cross-subject GLM, with inference in randomise (assuming you already have the GLM design.mat and design.con files).
