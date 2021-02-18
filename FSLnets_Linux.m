@@ -74,7 +74,9 @@ save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_
 
 
 % [Znet3,Mnet3]=nets_groupmean(netmats3,1);   % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
-
+%Mnet is a measure of effect size whereas the other is a test statistic.
+%Depends on what you want to do. If for visualisation or inference, Znet.
+%If for further testing, Mnet.
 
 %%
 %%% view hierarchical clustering of nodes
