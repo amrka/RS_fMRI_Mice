@@ -80,6 +80,10 @@ save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_
 % both are calculated after performing r-to-z fisher transformation on the correlation vlaues
 % these z values are what is referred to as connection strength
 % so r-to-z transformation then averaging using one-sample t-test, convert t-stat to z-stat
+% excerpt from fslnets parctical:
+% Actually doing one-sample t-test at each edge and then transforming to Z stats
+
+
 
 %%
 %%% view hierarchical clustering of nodes
