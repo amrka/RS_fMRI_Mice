@@ -77,6 +77,9 @@ save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_
 %Mnet is a measure of effect size whereas the other is a test statistic.
 %Depends on what you want to do. If for visualisation or inference, Znet.
 %If for further testing, Mnet.
+% both are calculated after performing r-to-z fisher transformation on the correlation vlaues
+% these z values are what is referred to as connection strength
+% so r-to-z transformation then averaging using one-sample t-test, convert t-stat to z-stat
 
 %%
 %%% view hierarchical clustering of nodes
