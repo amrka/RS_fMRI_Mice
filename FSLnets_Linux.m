@@ -83,6 +83,10 @@ save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_
 % excerpt from fslnets parctical:
 % Actually doing one-sample t-test at each edge and then transforming to Z stats
 
+% Another excerpt to add more clarifications about Mnet
+% This can be done using the command below, which saves out both the simple
+% average of netmats accross all subjects (Mnet) and the results of
+% a simple one-group t-test (against zero) across subjects as Z values (Znet). 
 
 
 %%
