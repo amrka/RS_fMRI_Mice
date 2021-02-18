@@ -73,7 +73,9 @@ save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_
 [Znet_rP,Mnet_rP]=nets_groupmean(netmats_rP,1);   % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
 
 
-% [Znet3,Mnet3]=nets_groupmean(netmats3,1);   % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
+% [Znet3,Mnet3]=nets_groupmean(netmats3,1);
+% test whichever netmat you're interested in;
+% returns Z values from one-group t-test and group-mean netmat
 %Mnet is a measure of effect size whereas the other is a test statistic.
 %Depends on what you want to do. If for visualisation or inference, Znet.
 %If for further testing, Mnet.
@@ -86,7 +88,7 @@ save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_
 % Another excerpt to add more clarifications about Mnet
 % This can be done using the command below, which saves out both the simple
 % average of netmats accross all subjects (Mnet) and the results of
-% a simple one-group t-test (against zero) across subjects as Z values (Znet). 
+% a simple one-group t-test (against zero) across subjects as Z values (Znet).
 
 
 %%
