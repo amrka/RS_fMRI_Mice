@@ -49,6 +49,13 @@ def plot_pcolor_map(matrix, vmin, vmax, dir):
 # plot the one-sample t-test of connectivity
 
 # the output from FSLNets is:
+# Znet mats are one-sample t-test zstat
+# so bascially the correlation values (full, partial,..) are transformed
+# using r-toz fisher transform -> one-sample t-test, t-stat -> stat
+# these z stat values are called edge strength, and refrred to as the average correlation
+# however, you have to take note of the distinction, I adjusted the caption on the colorbars# on (one_sample_t_test_adjusted.svg)
+# from z-score to the correct correlation strength
+# Mnet is the simple average of the transformed correlation and hence can be called z-score
 # nets_groupmean.m:
 # netmats_F_Znetd.mat      netmats_P_Znetd.mat      netmats_rP_Znetd.mat
 dir = '/Users/amr/Dropbox/thesis/resting/FSLNets_pics'
