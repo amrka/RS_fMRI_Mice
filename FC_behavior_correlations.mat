@@ -1,0 +1,8 @@
+% evaluating the correlation between functional connectivity and behavior
+% we are using the netmats from fslnets and the contrasts, designs from resting-state behavior
+% I used with the to assess the correlation between the IC maps and the behavior
+
+% start by importing the netmats I clculated in fslnets_linux and use them
+netmats_F = load('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/dim_20_netmats_F.mat');
+netmats_P = load('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/dim_20_netmats_P.mat');
+netmats_rP = load('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/dim_20_netmats_rP.mat')
