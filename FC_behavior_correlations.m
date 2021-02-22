@@ -26,7 +26,7 @@ ts_dir='/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_g
 ts=nets_load(ts_dir,2,1);
    %%% arg2 is the TR (in seconds)
    %%% arg3 controls variance normalisation: 0=none, 1=normalise whole subject stddev, 2=normalise each separate timeseries from each subject
-ts_spectra=nets_spectra(ts);   % have a look at mean timeseries spectra
+
 
 %%
 %%% cleanup and remove bad nodes' timeseries (whichever is NOT listed in ts.DD is *BAD*).
