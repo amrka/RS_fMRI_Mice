@@ -54,3 +54,69 @@ netmats_rP=  nets_netmats(ts,1,'ridgep', 0.1);     % Ridge Regression partial, w
 [Znet_F,Mnet_F]=nets_groupmean(netmats_F,1);   % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
 [Znet_P,Mnet_P]=nets_groupmean(netmats_P,1);   % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
 [Znet_rP,Mnet_rP]=nets_groupmean(netmats_rP,1);   % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
+
+
+
+con = {
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_open_to_close_ratio.con';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_center.con';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_center_percent.con';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_closed_arms.con';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_closed_arms_percent.con';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_opened_arms.con';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_opened_arms_percent.con';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_total_distance.con';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_velocity.con';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_percent_in_center.con';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_percent_in_corners.con';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_sec_in_center.con';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_total_distance.con';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_total_time_in_corners.con';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_velocity.con'
+};
+
+mat = {
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_open_to_close_ratio.mat';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_center.mat';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_center_percent.mat';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_closed_arms.mat';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_closed_arms_percent.mat';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_opened_arms.mat';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_opened_arms_percent.mat';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_total_distance.mat';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_velocity.mat';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_percent_in_center.mat';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_percent_in_corners.mat';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_sec_in_center.mat';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_total_distance.mat';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_total_time_in_corners.mat';
+'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_velocity.mat'
+};
+
+
+% I adjusted the number of permutations to 10000 from nets_glm.m
+[p_uncorrected_F,p_corrected_F]=nets_glm(netmats_F, design, contrast,1); %1 last argument is to show output or not
+[p_uncorrected_P,p_corrected_P]=nets_glm(netmats_P, design, contrast,1);
+[p_uncorrected_rP,p_corrected_rP]=nets_glm(netmats_rP, design, contrast,1);
+
+
+% do not forget to bring the index of bigger than 0.95
+% I created manually a directory :
+% /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation
+% to save the results
+i = 1
+while i <= length(con)
+    design = mat{i};
+    contrast = con{i};
+    suffix = regexprep(mat{i}, '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/|.mat','')
+
+    [p_uncorrected_F,p_corrected_F]=nets_glm(netmats_F, design, contrast,1);
+    save(['/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/' suffix '_p_corrected_F.mat'], 'p_corrected_F')
+
+    [p_uncorrected_P,p_corrected_P]=nets_glm(netmats_P, design, contrast,1);
+    save(['/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/' suffix '_p_corrected_P.mat'], 'p_corrected_P')
+
+    [p_uncorrected_rP,p_corrected_rP]=nets_glm(netmats_rP, design, contrast,1);
+    save(['/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/' suffix '_p_corrected_rP.mat'], 'p_corrected_rP')
+    i = i + 1
+end
