@@ -38,7 +38,6 @@ ts=nets_tsclean(ts,1);                   % regress the bad nodes out of the good
                                          %    b) denote any "unknown" nodes as bad nodes - i.e. list them in ts.DD and not in ts.UNK
                                          %    (for discussion on this, see Griffanti NeuroImage 2014.)
 nets_nodepics(ts,group_maps);            % quick views of the good and bad components
-ts_spectra=nets_spectra(ts);             % have a look at mean spectra after this cleanup
 
 
 % all the netmats are r-to-z transformed
@@ -105,13 +104,19 @@ while i <= length(con)
     contrast = con{i};
     suffix = regexprep(mat{i}, '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/|.mat','');
 
-    [p_uncorrected_F,p_corrected_F]=nets_glm(netmats_F, design, contrast,1);
+    [p_uncorrected_F,p_corrected_F]=nets_glm(netmats_F, design, contrast,0);
+    nets_edgepics(ts,group_maps,Znet_F,reshape(p_corrected_F(1,:),ts.Nnodes,ts.Nnodes),6);
+    nets_edgepics(ts,group_maps,Znet_F,reshape(p_corrected_F(2,:),ts.Nnodes,ts.Nnodes),6);
     save(['/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/' suffix '_p_corrected_F.mat'], 'p_corrected_F')
 
-    [p_uncorrected_P,p_corrected_P]=nets_glm(netmats_P, design, contrast,1);
+    [p_uncorrected_P,p_corrected_P]=nets_glm(netmats_P, design, contrast,0);
+    nets_edgepics(ts,group_maps,Znet_P,reshape(p_corrected_P(1,:),ts.Nnodes,ts.Nnodes),6);
+    nets_edgepics(ts,group_maps,Znet_P,reshape(p_corrected_P(2,:),ts.Nnodes,ts.Nnodes),6);
     save(['/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/' suffix '_p_corrected_P.mat'], 'p_corrected_P')
 
-    [p_uncorrected_rP,p_corrected_rP]=nets_glm(netmats_rP, design, contrast,1);
+    [p_uncorrected_rP,p_corrected_rP]=nets_glm(netmats_rP, design, contrast,0);
+    nets_edgepics(ts,group_maps,Znet_rP,reshape(p_corrected_rP(1,:),ts.Nnodes,ts.Nnodes),6);
+    nets_edgepics(ts,group_maps,Znet_rP,reshape(p_corrected_rP(2,:),ts.Nnodes,ts.Nnodes),6);
     save(['/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/' suffix '_p_corrected_rP.mat'], 'p_corrected_rP')
     i = i + 1
 end
