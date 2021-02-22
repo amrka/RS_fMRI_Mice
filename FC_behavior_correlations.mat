@@ -40,13 +40,8 @@ ts=nets_tsclean(ts,1);                   % regress the bad nodes out of the good
 nets_nodepics(ts,group_maps);            % quick views of the good and bad components
 ts_spectra=nets_spectra(ts);             % have a look at mean spectra after this cleanup
 
-%%
-%%% create various kinds of network matrices and optionally convert correlations to z-stats.
-%%% here's various examples - you might only generate/use one of these.
-%%% the output has one row per subject; within each row, the net matrix is unwrapped into 1D.
-%%% the r2z transformation estimates an empirical correction for autocorrelation in the data.
-%netmats0=  nets_netmats(ts,0,'cov');        % covariance (with variances on diagonal)
-%netmats0a= nets_netmats(ts,0,'amp');        % amplitudes only - no correlations (just the diagonal)
+
+% all the netmats are r-to-z transformed
 netmats_F=  nets_netmats(ts,1,'corr');       % full correlation (normalised covariances)
 netmats_P=  nets_netmats(ts,1,'icov');       % partial correlation
 netmats_rP=  nets_netmats(ts,1,'ridgep', 0.1);     % Ridge Regression partial, with rho=0.1
@@ -108,7 +103,7 @@ i = 1
 while i <= length(con)
     design = mat{i};
     contrast = con{i};
-    suffix = regexprep(mat{i}, '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/|.mat','')
+    suffix = regexprep(mat{i}, '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/|.mat','');
 
     [p_uncorrected_F,p_corrected_F]=nets_glm(netmats_F, design, contrast,1);
     save(['/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/' suffix '_p_corrected_F.mat'], 'p_corrected_F')
