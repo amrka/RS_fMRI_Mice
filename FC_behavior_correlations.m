@@ -41,10 +41,12 @@ nets_nodepics(ts,group_maps);            % quick views of the good and bad compo
 
 
 % all the netmats are r-to-z transformed
+netmats_A= nets_netmats(ts,0,'amp');        % amplitudes only - no correlations (just the diagonal)
 netmats_F=  nets_netmats(ts,1,'corr');       % full correlation (normalised covariances)
 netmats_P=  nets_netmats(ts,1,'icov');       % partial correlation
 netmats_rP=  nets_netmats(ts,1,'ridgep', 0.1);     % Ridge Regression partial, with rho=0.1
 
+[Znet_A,Mnet_A]=nets_groupmean(netmats_A,1);   % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
 [Znet_F,Mnet_F]=nets_groupmean(netmats_F,1);   % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
 [Znet_P,Mnet_P]=nets_groupmean(netmats_P,1);   % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
 [Znet_rP,Mnet_rP]=nets_groupmean(netmats_rP,1);   % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
@@ -89,6 +91,7 @@ mat = {
 
 
 % I adjusted the number of permutations to 10000 from nets_glm.m
+[p_uncorrected_A,p_corrected_A]=nets_glm(netmats_A, design, contrast,1);
 [p_uncorrected_F,p_corrected_F]=nets_glm(netmats_F, design, contrast,1); %1 last argument is to show output or not
 [p_uncorrected_P,p_corrected_P]=nets_glm(netmats_P, design, contrast,1);
 [p_uncorrected_rP,p_corrected_rP]=nets_glm(netmats_rP, design, contrast,1);
@@ -103,6 +106,11 @@ while i <= length(con)
     design = mat{i};
     contrast = con{i};
     suffix = regexprep(mat{i}, '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/|.mat','');
+
+    [p_uncorrected_A,p_corrected_A]=nets_glm(netmats_A, design, contrast,0);
+    nets_edgepics(ts,group_maps,Znet_A,reshape(p_corrected_A(1,:),ts.Nnodes,ts.Nnodes),6);
+    nets_edgepics(ts,group_maps,Znet_A,reshape(p_corrected_A(2,:),ts.Nnodes,ts.Nnodes),6);
+    save(['/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/' suffix '_p_corrected_A.mat'], 'p_corrected_A')
 
     [p_uncorrected_F,p_corrected_F]=nets_glm(netmats_F, design, contrast,0);
     nets_edgepics(ts,group_maps,Znet_F,reshape(p_corrected_F(1,:),ts.Nnodes,ts.Nnodes),6);
