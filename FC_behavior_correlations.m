@@ -101,8 +101,6 @@ while i <= length(con)
     suffix = regexprep(mat{i}, '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/|.mat','');
 
     [p_uncorrected_A,p_corrected_A]=nets_glm(netmats_A, design, contrast,0);
-    nets_edgepics(ts,group_maps,Znet_A,reshape(p_corrected_A(1,:),ts.Nnodes,ts.Nnodes),6);
-    nets_edgepics(ts,group_maps,Znet_A,reshape(p_corrected_A(2,:),ts.Nnodes,ts.Nnodes),6);
     save(['/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/' suffix '_p_corrected_A.mat'], 'p_corrected_A')
 
     [p_uncorrected_F,p_corrected_F]=nets_glm(netmats_F, design, contrast,0);
