@@ -52,7 +52,7 @@ netmats_rP=  nets_netmats(ts,1,'ridgep', 0.1);     % Ridge Regression partial, w
 [Znet_rP,Mnet_rP]=nets_groupmean(netmats_rP,1);   % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
 
 
-
+%%
 con = {
 '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_open_to_close_ratio.con';
 '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_center.con';
@@ -89,14 +89,7 @@ mat = {
 '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_velocity.mat'
 };
 
-
-% I adjusted the number of permutations to 10000 from nets_glm.m
-[p_uncorrected_A,p_corrected_A]=nets_glm(netmats_A, design, contrast,1);
-[p_uncorrected_F,p_corrected_F]=nets_glm(netmats_F, design, contrast,1); %1 last argument is to show output or not
-[p_uncorrected_P,p_corrected_P]=nets_glm(netmats_P, design, contrast,1);
-[p_uncorrected_rP,p_corrected_rP]=nets_glm(netmats_rP, design, contrast,1);
-
-
+%%
 % do not forget to bring the index of bigger than 0.95
 % I created manually a directory :
 % /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation
