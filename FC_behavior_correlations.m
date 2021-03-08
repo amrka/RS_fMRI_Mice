@@ -142,3 +142,46 @@ end
 % combine the names and their respective mats
 p_corrected_A_struc = cell2struct(values, names)
 save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/p_corrected_A_struc')
+
+%%
+% the rest
+corr_mats = dir('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/*_F.mat')
+names = cell(size(corr_mats))
+values = cell(size(corr_mats))
+
+for kk = 1:numel(corr_mats)
+    names{kk} = corr_mats(kk).name(1:end-4)
+    mat_name = load(corr_mats(kk).name)
+    values{kk} = mat_name.p_corrected_F
+end
+
+p_corrected_F_struc = cell2struct(values, names)
+save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/p_corrected_F_struc')
+
+%%
+corr_mats = dir('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/*_P.mat')
+names = cell(size(corr_mats))
+values = cell(size(corr_mats))
+
+for kk = 1:numel(corr_mats)
+    names{kk} = corr_mats(kk).name(1:end-4)
+    mat_name = load(corr_mats(kk).name)
+    values{kk} = mat_name.p_corrected_P
+end
+
+p_corrected_P_struc = cell2struct(values, names)
+save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/p_corrected_P_struc')
+
+%%
+corr_mats = dir('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/*_rP.mat')
+names = cell(size(corr_mats))
+values = cell(size(corr_mats))
+
+for kk = 1:numel(corr_mats)
+    names{kk} = corr_mats(kk).name(1:end-4)
+    mat_name = load(corr_mats(kk).name)
+    values{kk} = mat_name.p_corrected_rP
+end
+
+p_corrected_rP_struc = cell2struct(values, names)
+save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/p_corrected_rP_struc')
