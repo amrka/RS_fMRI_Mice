@@ -123,6 +123,7 @@ end
 
 
 %%
+% N.B. I checked the elements of those structures against the single mats and they checked out
 % construct structures containing each filename and its respective pc_corrected_mat
 % first the amplitude
 corr_mats = dir('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/*_A.mat')
