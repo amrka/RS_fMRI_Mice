@@ -119,3 +119,26 @@ while i <= length(con)
     save(['/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/' suffix '_p_corrected_rP.mat'], 'p_corrected_rP')
     i = i + 1
 end
+
+
+
+%%
+% construct structures containing each filename and its respective pc_corrected_mat
+% first the amplitude
+corr_mats = dir('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/*_A.mat')
+
+% construct two empty cells, one to hold the filenames and the other the mats
+% since when you load the filename, they all have the same name (p_corrected_A)
+names = cell(size(corr_mats))
+values = cell(size(corr_mats))
+
+% loop over the filenames
+for kk = 1:numel(corr_mats)
+    names{kk} = corr_mats(kk).name(1:end-4)
+    mat_name = load(corr_mats(kk).name)
+    values{kk} = mat_name.p_corrected_A
+end
+
+% combine the names and their respective mats
+p_corrected_A_struc = cell2struct(values, names)
+save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/p_corrected_A_struc')
