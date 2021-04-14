@@ -17,7 +17,7 @@ group_maps='/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/me
    %%% slices_summary <group_maps> 4 $FSLDIR/data/standard/MNI152_T1_2mm <group_maps>.sum
 ts_dir='/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/dual_regression/output';                           % dual regression output directory, containing all subjects' timeseries
 
-%system('dir=/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/;slices_summary ${dir}melodic_IC 3 /media/amr/Amr_4TB/Work/October_Acquistion/anat_temp_enhanced_3.nii.gz ${dir}melodic_IC.sum -1')
+%system('dir=/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/;slices_summary ${dir}melodic_IC 3 /media/amr/Amr_4TB/Work/October_Acquistion/anat_temp_enhanced_3.nii.gz ${dir}melodic_IC.sum -1')
 %%% [tail: illegal offset -- +] error can be avoided by adding -1 to summary_slices command
 %%% it will return one slice image per component instead of three, but here will be no errors
 %%% adding -d flag does not pan out very well, the template becomes way too much darker
@@ -92,31 +92,31 @@ mat = {
 %%
 % do not forget to bring the index of bigger than 0.95
 % I created manually a directory :
-% /media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation
+% /Volumes/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation
 % to save the results
 i = 1
 while i <= length(con)
     design = mat{i};
     contrast = con{i};
-    suffix = regexprep(mat{i}, '/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/|.mat','');
+    suffix = regexprep(mat{i}, '/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/|.mat','');
 
     [p_uncorrected_A,p_corrected_A]=nets_glm(netmats_A, design, contrast,0);
-    save(['/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/' suffix '_p_corrected_A.mat'], 'p_corrected_A')
+    save(['/Volumes/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation/' suffix '_p_corrected_A.mat'], 'p_corrected_A')
 
     [p_uncorrected_F,p_corrected_F]=nets_glm(netmats_F, design, contrast,0);
     nets_edgepics(ts,group_maps,Znet_F,reshape(p_corrected_F(1,:),ts.Nnodes,ts.Nnodes),6);
     nets_edgepics(ts,group_maps,Znet_F,reshape(p_corrected_F(2,:),ts.Nnodes,ts.Nnodes),6);
-    save(['/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/' suffix '_p_corrected_F.mat'], 'p_corrected_F')
+    save(['/Volumes/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation/' suffix '_p_corrected_F.mat'], 'p_corrected_F')
 
     [p_uncorrected_P,p_corrected_P]=nets_glm(netmats_P, design, contrast,0);
     nets_edgepics(ts,group_maps,Znet_P,reshape(p_corrected_P(1,:),ts.Nnodes,ts.Nnodes),6);
     nets_edgepics(ts,group_maps,Znet_P,reshape(p_corrected_P(2,:),ts.Nnodes,ts.Nnodes),6);
-    save(['/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/' suffix '_p_corrected_P.mat'], 'p_corrected_P')
+    save(['/Volumes/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation/' suffix '_p_corrected_P.mat'], 'p_corrected_P')
 
     [p_uncorrected_rP,p_corrected_rP]=nets_glm(netmats_rP, design, contrast,0);
     nets_edgepics(ts,group_maps,Znet_rP,reshape(p_corrected_rP(1,:),ts.Nnodes,ts.Nnodes),6);
     nets_edgepics(ts,group_maps,Znet_rP,reshape(p_corrected_rP(2,:),ts.Nnodes,ts.Nnodes),6);
-    save(['/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/' suffix '_p_corrected_rP.mat'], 'p_corrected_rP')
+    save(['/Volumes/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation/' suffix '_p_corrected_rP.mat'], 'p_corrected_rP')
     i = i + 1
 end
 
