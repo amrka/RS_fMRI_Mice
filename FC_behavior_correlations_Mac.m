@@ -1,21 +1,21 @@
 % Set up FSL environment
-setenv( 'FSLDIR', '/usr/share/fsl/5.0');
+setenv( 'FSLDIR', '/usr/share/fsl');
 fsldir = getenv('FSLDIR');
 fsldirmpath = sprintf('%s/etc/matlab',fsldir);
 path(path, fsldirmpath);
 %clear fsldir fsldirmpath;
 
 
-addpath /media/amr/HDD/Softwares/FSLNETS/FSLNets              % wherever you've put this package
-addpath /media/amr/HDD/Softwares/FSLNETS/L1precision            % L1precision toolbox
-addpath /media/amr/HDD/Softwares/FSLNETS/pwling                 % pairwise causality toolbox
+addpath /Users/amr/Downloads/FSLNets              % wherever you've put this package
+addpath /Users/amr/Downloads/L1precision            % L1precision toolbox
+addpath /Users/amr/Downloads/pwling                 % pairwise causality toolbox
 addpath(sprintf('%s/etc/matlab',getenv('FSLDIR')))
 %%
 n_dims = 20
-group_maps='/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC';     % spatial maps 4D NIFTI file, e.g. from group-ICA No extension needed
+group_maps='/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC';     % spatial maps 4D NIFTI file, e.g. from group-ICA No extension needed
    %%% you must have already run the following (outside MATLAB), to create summary pictures of the maps in the NIFTI file:
    %%% slices_summary <group_maps> 4 $FSLDIR/data/standard/MNI152_T1_2mm <group_maps>.sum
-ts_dir='/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/dual_regression/output';                           % dual regression output directory, containing all subjects' timeseries
+ts_dir='/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/dual_regression/output';                           % dual regression output directory, containing all subjects' timeseries
 
 %system('dir=/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/;slices_summary ${dir}melodic_IC 3 /media/amr/Amr_4TB/Work/October_Acquistion/anat_temp_enhanced_3.nii.gz ${dir}melodic_IC.sum -1')
 %%% [tail: illegal offset -- +] error can be avoided by adding -1 to summary_slices command
@@ -54,39 +54,39 @@ netmats_rP=  nets_netmats(ts,1,'ridgep', 0.1);     % Ridge Regression partial, w
 
 %%
 con = {
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_open_to_close_ratio.con';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_center.con';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_center_percent.con';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_closed_arms.con';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_closed_arms_percent.con';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_opened_arms.con';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_opened_arms_percent.con';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_total_distance.con';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_velocity.con';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_percent_in_center.con';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_percent_in_corners.con';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_sec_in_center.con';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_total_distance.con';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_total_time_in_corners.con';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_velocity.con'
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/EPM_open_to_close_ratio.con';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_center.con';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_center_percent.con';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_closed_arms.con';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_closed_arms_percent.con';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_opened_arms.con';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_opened_arms_percent.con';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/EPM_total_distance.con';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/EPM_velocity.con';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/OF_percent_in_center.con';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/OF_percent_in_corners.con';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/OF_sec_in_center.con';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/OF_total_distance.con';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/OF_total_time_in_corners.con';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/OF_velocity.con'
 };
 
 mat = {
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_open_to_close_ratio.mat';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_center.mat';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_center_percent.mat';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_closed_arms.mat';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_closed_arms_percent.mat';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_opened_arms.mat';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_opened_arms_percent.mat';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_total_distance.mat';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/EPM_velocity.mat';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_percent_in_center.mat';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_percent_in_corners.mat';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_sec_in_center.mat';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_total_distance.mat';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_total_time_in_corners.mat';
-'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/resting_state_corr_designs/OF_velocity.mat'
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/EPM_open_to_close_ratio.mat';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_center.mat';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_center_percent.mat';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_closed_arms.mat';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_closed_arms_percent.mat';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_opened_arms.mat';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/EPM_time_in_opened_arms_percent.mat';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/EPM_total_distance.mat';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/EPM_velocity.mat';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/OF_percent_in_center.mat';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/OF_percent_in_corners.mat';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/OF_sec_in_center.mat';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/OF_total_distance.mat';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/OF_total_time_in_corners.mat';
+'/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/OF_velocity.mat'
 };
 
 %%
@@ -126,7 +126,7 @@ end
 % N.B. I checked the elements of those structures against the single mats and they checked out
 % construct structures containing each filename and its respective pc_corrected_mat
 % first the amplitude
-corr_mats = dir('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/*_A.mat')
+corr_mats = dir('/Volumes/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation/*_A.mat')
 
 % construct two empty cells, one to hold the filenames and the other the mats
 % since when you load the filename, they all have the same name (p_corrected_A)
@@ -142,11 +142,11 @@ end
 
 % combine the names and their respective mats
 p_corrected_A_struc = cell2struct(values, names)
-save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/p_corrected_A_struc')
+save('/Volumes/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation/p_corrected_A_struc')
 
 %%
 % the rest
-corr_mats = dir('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/*_F.mat')
+corr_mats = dir('/Volumes/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation/*_F.mat')
 names = cell(size(corr_mats))
 values = cell(size(corr_mats))
 
@@ -157,10 +157,10 @@ for kk = 1:numel(corr_mats)
 end
 
 p_corrected_F_struc = cell2struct(values, names)
-save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/p_corrected_F_struc')
+save('/Volumes/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation/p_corrected_F_struc')
 
 %%
-corr_mats = dir('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/*_P.mat')
+corr_mats = dir('/Volumes/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation/*_P.mat')
 names = cell(size(corr_mats))
 values = cell(size(corr_mats))
 
@@ -171,10 +171,10 @@ for kk = 1:numel(corr_mats)
 end
 
 p_corrected_P_struc = cell2struct(values, names)
-save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/p_corrected_P_struc')
+save('/Volumes/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation/p_corrected_P_struc')
 
 %%
-corr_mats = dir('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/*_rP.mat')
+corr_mats = dir('/Volumes/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation/*_rP.mat')
 names = cell(size(corr_mats))
 values = cell(size(corr_mats))
 
@@ -185,4 +185,4 @@ for kk = 1:numel(corr_mats)
 end
 
 p_corrected_rP_struc = cell2struct(values, names)
-save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/p_corrected_rP_struc')
+save('/Volumes/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation/p_corrected_rP_struc')
