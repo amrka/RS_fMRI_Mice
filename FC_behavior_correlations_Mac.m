@@ -227,3 +227,12 @@ for ii = 1:numel(fn)
         sig_counter = sig_counter + 1
     end
 end
+
+
+
+% list of the matrices with significant values
+EPM_open_to_close_ratio_p_corrected_A = load('EPM_open_to_close_ratio_p_corrected_A.mat')
+EPM_time_in_closed_arms_p_corrected_A = load('EPM_time_in_closed_arms_p_corrected_A.mat')
+EPM_time_in_closed_arms_percent_p_corrected_A = load('EPM_time_in_closed_arms_percent_p_corrected_A.mat')
+EPM_time_in_opened_arms_p_corrected_A = load('EPM_time_in_opened_arms_p_corrected_A.mat')
+EPM_time_in_opened_arms_percent_p_corrected_A = load('EPM_time_in_opened_arms_percent_p_corrected_A.mat')
