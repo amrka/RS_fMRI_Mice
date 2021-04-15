@@ -195,3 +195,35 @@ save('/Volumes/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation/
 % there is two scripts for nets_glm in mac fslnets toolbox one from 17 Dec, 2019 -> gave an error
 % the one from 25 April, 2015 -> worked
 % the significant values existed between both the os
+
+
+% create a matrix to hold the names of the matrices with significant values:
+%%
+fn = {'EPM_open_to_close_ratio_p_corrected_A',
+'EPM_time_in_center_p_corrected_A',
+'EPM_time_in_center_percent_p_corrected_A',
+'EPM_time_in_closed_arms_p_corrected_A',
+'EPM_time_in_closed_arms_percent_p_corrected_A',
+'EPM_time_in_opened_arms_p_corrected_A',
+'EPM_time_in_opened_arms_percent_p_corrected_A',
+'EPM_total_distance_p_corrected_A',
+'EPM_velocity_p_corrected_A',
+'OF_percent_in_center_p_corrected_A',
+'OF_percent_in_corners_p_corrected_A',
+'OF_sec_in_center_p_corrected_A',
+'OF_total_distance_p_corrected_A',
+'OF_total_time_in_corners_p_corrected_A',
+'OF_velocity_p_corrected_A'}
+%%
+% an empty cell to hold the significant matrices
+significant = {}
+sig_counter = 1
+
+for ii = 1:numel(fn)
+    mat_new = p_corrected_A_struc.(fn{ii});
+    if mat_new(mat_new>0.949)
+        display(fn{ii})
+        significant{sig_counter} = fn{ii}
+        sig_counter = sig_counter + 1
+    end
+end
