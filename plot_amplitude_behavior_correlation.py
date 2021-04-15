@@ -94,8 +94,20 @@ def plot_amplitude_correlation(amp_mat_path, netmats_A_path, design_mat_path):
 
 
 # =======================================================================================================================================
-amp_mat_path = '/Volumes/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation/EPM_open_to_close_ratio_p_corrected_A.mat'
-netmats_A_path = '/Volumes/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation/netmats_A.mat'
-design_mat_path = '/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/EPM_open_to_close_ratio.mat'
+# run the function for all the sig mats
+sig_mat_list = ['EPM_open_to_close_ratio_p_corrected_A.mat',
+                'EPM_time_in_closed_arms_p_corrected_A.mat',
+                'EPM_time_in_closed_arms_percent_p_corrected_A.mat',
+                'EPM_time_in_opened_arms_p_corrected_A.mat',
+                'EPM_time_in_opened_arms_percent_p_corrected_A.mat']
 
-plot_amplitude_correlation(amp_mat_path, netmats_A_path, design_mat_path)
+FC_behavior_correlation_path = '/Volumes/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation'
+resting_state_corr_designs = '/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs'
+
+for mat in sig_mat_list:
+    amp_mat_path = os.path.join(FC_behavior_correlation_path, mat)
+    netmats_A_path = os.path.join(FC_behavior_correlation_path, 'netmats_A.mat')
+    # to get the name of design without p_corrected_A
+    mat = mat.replace('_p_corrected_A', '')
+    design_mat_path = os.path.join(resting_state_corr_designs, mat)
+    plot_amplitude_correlation(amp_mat_path, netmats_A_path, design_mat_path)
