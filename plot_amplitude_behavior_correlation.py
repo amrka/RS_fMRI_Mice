@@ -29,13 +29,16 @@ def plot_amplitude_correlation(amp_mat_path, netmats_A_path, design_mat_path):
     loc = np.nonzero(mat_ndarray > 0.949)
     # get the exact p_values to use it later
     p_value = mat_ndarray[mat_ndarray > 0.949]
+    # convert p_value to one-element list to avoid the braces when typing on figure
+    p_value = p_value.astype(list)[0]
+    p_value = round(p_value, 4)
     # convert the ndarray containing the column location to a list of one element
     index_sig_col = loc[1].astype(list)
     # load the netmats_A matrix
     netmats_A = loadmat(netmats_A_path)
-    netmats_A = netmats['netmats_A']
+    netmats_A = netmats_A['netmats_A']
     # use the col index to get the amplitudes of the 30 subjects from the netmats
-    amplitudes = netmats_A[:, index_sig_col]
+    amplitudes = netmats_A[:, index_sig_col[0]]
 
     # 2- get the behavioral values from design matrix
     mat_basename_no_ext = ntpath.basename(design_mat_path)[:-4]
@@ -79,14 +82,20 @@ def plot_amplitude_correlation(amp_mat_path, netmats_A_path, design_mat_path):
     plt.scatter(amplitudes[:16], behav[:16], marker='o', color='#e41a1c')
     plt.scatter(amplitudes[16:], behav[16:], marker='<', color='#377eb8')
     plt.ylabel("{0}".format(mat_basename_no_ext), fontsize=18, fontname='Arial', color='#ffffffff')
+    plt.xlabel("Amplitude", fontsize=18, fontname='Arial', color='#ffffffff')
     plt.plot(amplitudes, poly1d_fn(amplitudes), color='#ffffffff')  # plot the regression line
     # type the coef on the graph, first two arguments the coordinates of the text (top left corner)
-    plt.text(min(amplitudes), max(behav), "r $= {0}$".format(
-        correlation_coef), fontname="Arial", style='italic', fontsize=14, color='#ffffffff')
+    plt.text(min(amplitudes), max(behav), "r $= {0}$ \nP value $= {1}$".format(
+        correlation_coef, p_value), fontname="Arial", style='italic', fontsize=14, color='#ffffffff')
 
-    plt.savefig("/Users/amr/Dropbox/thesis/diffusion/DTI_corr/{0}_{1}.svg".format(
-        img_basename_no_ext, mat_basename_no_ext), format='svg')
+    plt.savefig("/Users/amr/Dropbox/thesis/resting/amp_behav_corr/{0}.svg".format(
+        mat_basename_no_ext), format='svg')
     plt.close()
 
-    os.remove(ts)  # delete the file of the voxel values as it is no longer needed
-    os.remove('stat_result.json')
+
+# =======================================================================================================================================
+amp_mat_path = '/Volumes/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation/EPM_open_to_close_ratio_p_corrected_A.mat'
+netmats_A_path = '/Volumes/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation/netmats_A.mat'
+design_mat_path = '/Volumes/Amr_1TB/resting_state/resting_state_corr/resting_state_corr_designs/EPM_open_to_close_ratio.mat'
+
+plot_amplitude_correlation(amp_mat_path, netmats_A_path, design_mat_path)
