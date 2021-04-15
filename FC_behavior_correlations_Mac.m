@@ -186,3 +186,12 @@ end
 
 p_corrected_rP_struc = cell2struct(values, names)
 save('/Volumes/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation/p_corrected_rP_struc')
+
+
+
+% I compared the output of the p_corrected_A mats between linux and mac and they are very close
+% not identical but obviosuly very similar
+% could be due to the version of matlab or the version of FSLNets
+% there is two scripts for nets_glm in mac fslnets toolbox one from 17 Dec, 2019 -> gave an error
+% the one from 25 April, 2015 -> worked
+% the significant values existed between both the os
