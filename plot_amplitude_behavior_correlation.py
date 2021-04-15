@@ -88,7 +88,7 @@ def plot_amplitude_correlation(amp_mat_path, netmats_A_path, design_mat_path):
     plt.text(min(amplitudes), max(behav), "r $= {0}$ \nP value $= {1}$".format(
         correlation_coef, p_value), fontname="Arial", style='italic', fontsize=14, color='#ffffffff')
 
-    plt.savefig("/Users/amr/Dropbox/thesis/resting/amp_behav_corr/{0}.svg".format(
+    plt.savefig("/Users/amr/Dropbox/thesis/resting/amp_behav_corr_mac/{0}.svg".format(
         mat_basename_no_ext), format='svg')
     plt.close()
 
