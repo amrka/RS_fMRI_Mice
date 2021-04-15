@@ -54,3 +54,39 @@ def plot_amplitude_correlation(amp_mat_path, netmats_A_path, design_mat_path):
     print("length of behav_values -> {0}".format(len(behav)))
     if len(amplitudes) != len(behav):
         sys.error('######ERROR####')
+
+    # 3- do the actual plotting
+    # the regression line
+    coef = np.polyfit(amplitudes, behav, 1)
+    poly1d_fn = np.poly1d(coef)
+
+    # get the correlation coeeficient
+    # round to 4 digits after the decimal point
+    correlation_coef = round(np.corrcoef(amplitudes, behav)[0, 1], 5)
+
+    plt.rcParams['font.family'] = 'Arial'
+
+    ax = plt.axes()
+    ax.spines['bottom'].set_color('#ffffffff')
+    ax.spines['top'].set_color('#ffffffff')
+    ax.spines['right'].set_color('#ffffffff')
+    ax.spines['left'].set_color('#ffffffff')
+    ax.tick_params(axis='x', colors='#ffffffff')
+    ax.tick_params(axis='y', colors='#ffffffff')
+
+    plt.xticks(fontsize=14, rotation=45, color='#ffffffff')
+    plt.yticks(fontsize=14, color='#ffffffff')
+    plt.scatter(amplitudes[:16], behav[:16], marker='o', color='#e41a1c')
+    plt.scatter(amplitudes[16:], behav[16:], marker='<', color='#377eb8')
+    plt.ylabel("{0}".format(mat_basename_no_ext), fontsize=18, fontname='Arial', color='#ffffffff')
+    plt.plot(amplitudes, poly1d_fn(amplitudes), color='#ffffffff')  # plot the regression line
+    # type the coef on the graph, first two arguments the coordinates of the text (top left corner)
+    plt.text(min(amplitudes), max(behav), "r $= {0}$".format(
+        correlation_coef), fontname="Arial", style='italic', fontsize=14, color='#ffffffff')
+
+    plt.savefig("/Users/amr/Dropbox/thesis/diffusion/DTI_corr/{0}_{1}.svg".format(
+        img_basename_no_ext, mat_basename_no_ext), format='svg')
+    plt.close()
+
+    os.remove(ts)  # delete the file of the voxel values as it is no longer needed
+    os.remove('stat_result.json')
