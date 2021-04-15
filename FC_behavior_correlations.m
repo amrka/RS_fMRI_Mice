@@ -186,3 +186,43 @@ end
 
 p_corrected_rP_struc = cell2struct(values, names)
 save('/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_corr/FC_behavior_correlation/p_corrected_rP_struc')
+
+% create a matrix to hold the names of the matrices with significant values:
+%%
+fn = {'EPM_open_to_close_ratio_p_corrected_A',
+'EPM_time_in_center_p_corrected_A',
+'EPM_time_in_center_percent_p_corrected_A',
+'EPM_time_in_closed_arms_p_corrected_A',
+'EPM_time_in_closed_arms_percent_p_corrected_A',
+'EPM_time_in_opened_arms_p_corrected_A',
+'EPM_time_in_opened_arms_percent_p_corrected_A',
+'EPM_total_distance_p_corrected_A',
+'EPM_velocity_p_corrected_A',
+'OF_percent_in_center_p_corrected_A',
+'OF_percent_in_corners_p_corrected_A',
+'OF_sec_in_center_p_corrected_A',
+'OF_total_distance_p_corrected_A',
+'OF_total_time_in_corners_p_corrected_A',
+'OF_velocity_p_corrected_A'}
+%%
+% an empty cell to hold the significant matrices
+significant = {}
+sig_counter = 1
+
+for ii = 1:numel(fn)
+    mat_new = p_corrected_A_struc.(fn{ii});
+    if mat_new(mat_new>0.949)
+        display(fn{ii})
+        significant{sig_counter} = fn{ii}
+        sig_counter = sig_counter + 1
+    end
+end
+
+
+
+% list of the matrices with significant values
+EPM_open_to_close_ratio_p_corrected_A = load('EPM_open_to_close_ratio_p_corrected_A.mat')
+EPM_time_in_closed_arms_p_corrected_A = load('EPM_time_in_closed_arms_p_corrected_A.mat')
+EPM_time_in_closed_arms_percent_p_corrected_A = load('EPM_time_in_closed_arms_percent_p_corrected_A.mat')
+EPM_time_in_opened_arms_p_corrected_A = load('EPM_time_in_opened_arms_p_corrected_A.mat')
+EPM_time_in_opened_arms_percent_p_corrected_A = load('EPM_time_in_opened_arms_percent_p_corrected_A.mat')
