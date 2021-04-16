@@ -1,7 +1,9 @@
 # plot the correlation between the amplitude and the behavior
 # since only amplitude was correlated with behavioral markaers
 # reminder from the matlab script, the behaviorla markers with significant values were:
-# TODO: compare the final plots between mac and linux
+# TODO: compare the final plots between mac and linux -> done
+# I did all the regression figures on both operating systems, compared the dots, the p values, and the r value
+# they are 99% identical, the differences are in fractions for example instead of 0.9748 -> 0.98
 # TODO: modify the correlation.m script to save the netmats_A -> done
 # EPM_open_to_close_ratio_p_corrected_A
 # EPM_time_in_closed_arms_p_corrected_A
