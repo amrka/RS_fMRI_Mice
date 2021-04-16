@@ -51,6 +51,8 @@ netmats_rP=  nets_netmats(ts,1,'ridgep', 0.1);     % Ridge Regression partial, w
 [Znet_P,Mnet_P]=nets_groupmean(netmats_P,1);   % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
 [Znet_rP,Mnet_rP]=nets_groupmean(netmats_rP,1);   % test whichever netmat you're interested in; returns Z values from one-group t-test and group-mean netmat
 
+% Save netmats to use it for plotting against behavior
+save(['/Volumes/amr/Amr_1TB/resting_state/resting_state_corr/FC_behavior_correlation/netmats_A')
 
 %%
 con = {
