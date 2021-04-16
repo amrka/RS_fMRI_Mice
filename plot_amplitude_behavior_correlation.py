@@ -81,7 +81,8 @@ def plot_amplitude_correlation(amp_mat_path, netmats_A_path, design_mat_path):
     plt.yticks(fontsize=14, color='#ffffffff')
     plt.scatter(amplitudes[:16], behav[:16], marker='o', color='#e41a1c')
     plt.scatter(amplitudes[16:], behav[16:], marker='<', color='#377eb8')
-    plt.ylabel("{0}_demeaned".format(mat_basename_no_ext), fontsize=18, fontname='Arial', color='#ffffffff')
+    plt.ylabel("{0}_demeaned".format(mat_basename_no_ext),
+               fontsize=18, fontname='Arial', color='#ffffffff')
     plt.xlabel("Amplitude", fontsize=18, fontname='Arial', color='#ffffffff')
     plt.plot(amplitudes, poly1d_fn(amplitudes), color='#ffffffff')  # plot the regression line
     # type the coef on the graph, first two arguments the coordinates of the text (top left corner)
