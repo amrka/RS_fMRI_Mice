@@ -89,6 +89,7 @@ nets_hierarchy(Znet_P,Znet_rP,ts.DD,'/Volumes/Amr_1TB/resting_state/resting_stat
 % another option without XAMPP, is to navigate to the folder where the index.html is located
 % >>> >>> python -m http.server
 % then go to the webbrowser and type http://localhost:8000/
+% http://127.0.0.1:8000/ sometimes work better
 nets_netweb(Znet_F,Znet_P,ts.DD,'/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC','/Applications/XAMPP/htdocs/netweb_F_P');
 nets_netweb(Znet_F,Znet_rP,ts.DD,'/Volumes/Amr_1TB/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC','/Applications/XAMPP/htdocs/netweb_F_rP');
 
