@@ -105,6 +105,9 @@ nets_hierarchy(Znet_P,Znet_rP,ts.DD,'/media/amr/Amr_4TB/Work/October_Acquistion/
 %%% view interactive netmat web-based display
 % for this to work, you need to install XAMPP, and save the index.html in /Applications/XAMPP/htdocs
 % it goes without saying, but you need to start the Apache Web Server
+% another option without XAMPP, is to navigate to the folder where the index.html is located
+% >>> >>> python -m http.server
+% then go to the webbrowser and type http://localhost:8000/
 nets_netweb(Znet_F,Znet_P,ts.DD,'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC','/opt/lampp/htdocs/netweb_F_P');
 nets_netweb(Znet_F,Znet_rP,ts.DD,'/media/amr/Amr_4TB/Work/October_Acquistion/resting_state/resting_state_gp_ICA+DR_workingdir/melodic_workflow/_dim_20/melodic_group/melodic_IC','/opt/lampp/htdocs/netweb_F_rP');
 
